@@ -1,0 +1,28 @@
+package com.example.demo.entities;
+
+public class Score {
+	private ScorePK id = new ScorePK();
+	private Double value;
+	
+	public void setMovie(Movie movie) {
+		return movie;
+	}
+	
+	
+	
+	public Score () {}
+	
+	public ScorePK getId() {
+		return id;
+	}
+	public void setId(ScorePK id) {
+		this.id = id;
+	}
+	
+	public Double getValue() {
+		return value;
+	}
+	public void setValue(Double value) {
+		this.value = value;
+	}
+}
