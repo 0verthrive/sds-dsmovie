@@ -51,7 +51,7 @@ function FormCard({movieId}: props){
         <div className="dsmovie-form-container">
         <img className="dsmovie-movie-card-image" src={movie?.image} alt={movie?.title} />
         <div className="dsmovie-card-bottom-container">
-            <h3>"The Witcher"</h3>
+            <h3>{movie?.title}</h3>
             <form className="dsmovie-form" onSubmit={handleSubmit}>
                 <div className="form-group dsmovie-form-group">
                     <label htmlFor="email">Informe seu email</label>
