@@ -9,7 +9,7 @@ import axios from "axios";
 
 function Listing(){
     //Mantem o estado no componente
-    const [pageNumber] = useState(0);
+    const [pageNumber, setPageNumber] = useState(0);
     const [page, setPage] = useState<MoviePage>({
         content: [],
         last: true,
@@ -30,10 +30,14 @@ function Listing(){
        });
     }, [pageNumber])
   
+    const handlePageNumber = (newPageNumber: number) => {
+        setPageNumber(newPageNumber);
+    }
+
     return(
         <>
         <p>{pageNumber}</p>
-        <Pagination />
+        <Pagination page={page} onChange={handlePageNumber}/>
         <div className="container">
         <div className="row">
 
