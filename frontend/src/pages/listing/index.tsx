@@ -10,32 +10,40 @@ import axios from "axios";
 function Listing(){
     //Mantem o estado no componente
     const [pageNumber, setPageNumber] = useState(0);
+    const [page, setPage] = useState<MoviePage>({
+        content: [],
+        last: true,
+        totalPages: 0,
+        totalElements: 0,
+        size: 12,
+        number: 0,
+        first: true,
+        numberOfElements: 0,
+        empty: true,
+    })
+
     //Executar algo na instanciação ou destruição do componente, observar estado
     useEffect(() => {
-        axios.get(`${BASE_URL}/movies?size=12&page=0`).then(response => {
+        axios.get(`${BASE_URL}/movies?size=12&page=${pageNumber}&sort=id`).then(response => {
             const data = response.data as MoviePage;
-            setPageNumber(data.number);
-        });
-    }, [])
-    
+            setPage(data)
+       });
+    }, [pageNumber])
+  
     return(
         <>
         <p>{pageNumber}</p>
         <Pagination />
         <div className="container">
         <div className="row">
-            <div className="col-md-6">
-                <MovieCard />
-            </div>    
-            <div className="col-md-6">
-                <MovieCard />
-            </div>    
-            <div className="col-md-6">
-                <MovieCard />
-            </div>    
-            <div className="col-md-6">
-                <MovieCard />
-            </div>    
+
+            {page.content.map(movie => (
+                <div key={movie.id} className="col-md-6">
+                <MovieCard movie={movie}/>
+            </div>
+            ))}
+
+                
         </div>
         </div>
         </>
